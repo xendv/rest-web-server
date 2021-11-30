@@ -25,6 +25,10 @@ GET http://localhost:3466/products
 Authorization: Basic admin admin
 
 ###
+GET http://localhost:3466/products/manufacturer/?man_id=333333
+Authorization: Basic admin admin
+
+###
 HEAD http://localhost:3466/products
 Authorization: Basic admin admin
 
