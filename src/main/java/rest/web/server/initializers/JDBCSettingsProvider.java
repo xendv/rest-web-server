@@ -1,6 +1,5 @@
 package rest.web.server.initializers;
 
-import com.google.inject.Inject;
 import org.jetbrains.annotations.NotNull;
 
 public final class JDBCSettingsProvider {
@@ -14,15 +13,20 @@ public final class JDBCSettingsProvider {
             ""
     );
 
-    private static final @NotNull String PREFIX = "jdbc:postgresql";
+    private static final @NotNull
+    String PREFIX = "jdbc:postgresql";
 
-    private final @NotNull String host;
-    private final @NotNull String port;
-    private final @NotNull String dbName;
-    private final @NotNull String login;
-    private final @NotNull String password;
+    private final @NotNull
+    String host;
+    private final @NotNull
+    String port;
+    private final @NotNull
+    String dbName;
+    private final @NotNull
+    String login;
+    private final @NotNull
+    String password;
 
-    @Inject
     private JDBCSettingsProvider(@NotNull String host,
                                  @NotNull String port,
                                  @NotNull String dbName,
@@ -35,17 +39,20 @@ public final class JDBCSettingsProvider {
         this.password = password;
     }
 
-    public @NotNull String url() {
+    public @NotNull
+    String url() {
         return PREFIX
                 + "://" + host + ':' + port
                 + '/' + dbName;
     }
 
-    public @NotNull String login() {
+    public @NotNull
+    String login() {
         return login;
     }
 
-    public @NotNull String password() {
+    public @NotNull
+    String password() {
         return password;
     }
 }

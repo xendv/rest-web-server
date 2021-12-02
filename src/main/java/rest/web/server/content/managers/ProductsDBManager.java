@@ -19,46 +19,42 @@ public final class ProductsDBManager {
     @Inject
     private ProductDAO productDAO;
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         List<Product> productsList = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
-            productDAO.setConnection(connection);
-            productsList = productDAO.all();
-        }
-        catch (SQLException exception) {
+        try (Connection connection = DriverManager
+                .getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
+            productsList = productDAO.all(connection);
+        } catch (SQLException exception) {
             System.err.println(exception.getMessage());
         }
         return productsList;
     }
 
-    public List<Product> getManufacturersProducts(@NotNull Integer manId){
+    public List<Product> getManufacturersProducts(@NotNull Integer manId) {
         List<Product> productsList = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
-            productDAO.setConnection(connection);
-            productsList = productDAO.getManufacturersProducts(manId);
-        }
-        catch (SQLException exception) {
+        try (Connection connection = DriverManager
+                .getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
+            productsList = productDAO.getManufacturersProducts(connection, manId);
+        } catch (SQLException exception) {
             System.err.println(exception.getMessage());
         }
         return productsList;
     }
 
-    public void addNewProduct(Product product){
-        try (Connection connection = DriverManager.getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
-            productDAO.setConnection(connection);
-            productDAO.save(product);
-        }
-        catch (SQLException exception) {
+    public void addNewProduct(Product product) {
+        try (Connection connection = DriverManager
+                .getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
+            productDAO.save(connection, product);
+        } catch (SQLException exception) {
             System.err.println(exception.getMessage());
         }
     }
 
-    public int deleteProduct(@NotNull String productName){
-        try (Connection connection = DriverManager.getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
-            productDAO.setConnection(connection);
-            return productDAO.delete(productName);
-        }
-        catch (SQLException exception) {
+    public int deleteProduct(@NotNull String productName) {
+        try (Connection connection = DriverManager
+                .getConnection(JDBC_SETTINGS.url(), JDBC_SETTINGS.login(), JDBC_SETTINGS.password())) {
+            return productDAO.delete(connection, productName);
+        } catch (SQLException exception) {
             System.err.println(exception.getMessage());
             return -1;
         }

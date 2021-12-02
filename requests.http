@@ -25,8 +25,13 @@ GET http://localhost:3466/products
 Authorization: Basic admin admin
 
 ###
-GET http://localhost:3466/products/manufacturer/?man_id=333333
+GET http://localhost:3466/products/manufacturer
 Authorization: Basic admin admin
+Content-Type: application/json
+
+{
+    "manufacturerId": 333333
+}
 
 ###
 HEAD http://localhost:3466/products
@@ -46,23 +51,34 @@ Authorization: Basic admin admin
 ###
 POST http://localhost:3466/products
 Authorization: Basic admin admin
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-name=NewProduct&quantity=90000&man_id=999999
+{
+    "name": "NewProduct",
+    "manufacturerId": 999999,
+    "quantity": 90000
+}
+
 
 ###
 POST http://localhost:3466/products
 Authorization: Basic admin admin
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-name=SecondProduct&quantity=555&man_id=999999
+{
+    "name": "SecondProduct",
+    "manufacturerId": 555,
+    "quantity": 999999
+}
 
 ###
 POST http://localhost:3466/products/delete
 Authorization: Basic admin admin
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-nameToDelete=NewProduct
+{
+    "name": "NewProduct"
+}
 
 ###
 GET http://localhost:3466
@@ -87,7 +103,12 @@ Authorization: Basic user user
 ###
 POST http://localhost:3466/products
 Authorization: Basic user user
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-name=NewProduct&quantity=90000&man_id=999999
+{
+    "name": "NewProduct",
+    "manufacturerId": 999999,
+    "quantity": 90000
+}
+
 

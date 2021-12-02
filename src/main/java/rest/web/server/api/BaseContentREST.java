@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -17,28 +19,31 @@ public final class BaseContentREST {
     private ProductsREST productsREST;
 
     @GET
-    public String getRoot(){
+    @Produces(MediaType.TEXT_HTML)
+    public String getRoot() {
         return getResource("/static/pages/main");
     }
 
     @GET
     @Path("/help")
-    public String getHelp(){
+    @Produces(MediaType.TEXT_HTML)
+    public String getHelp() {
         return getResource("/static/pages/help");
     }
 
-    private String getResource(@NotNull String resourcePath){
+    private String getResource(@NotNull String resourcePath) {
         final URL resource = BaseContentREST.class.getResource(resourcePath);
         if (resource != null)
             try (InputStream in = resource.openStream()) {
                 return new String(in.readAllBytes(), StandardCharsets.UTF_8);
-            }
-            catch (IOException e){
+            } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
         return null;
     }
 
     @Path("/products")
-    public ProductsREST productsREST() {return productsREST;}
+    public ProductsREST productsREST() {
+        return productsREST;
+    }
 }

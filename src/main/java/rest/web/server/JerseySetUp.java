@@ -13,7 +13,7 @@ import java.util.Map;
 // if extend Application, throws 404
 public final class JerseySetUp {
 
-    public static Map<String, String> getParams(){
+    public static Map<String, String> getParams() {
         final Map<String, String> param = new HashMap<>();
         param.put(ServletProperties.JAXRS_APPLICATION_CLASS, App.class.getName());
         param.put(ServerProperties.PROVIDER_PACKAGES, BaseContentREST.class.getPackage().getName());

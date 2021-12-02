@@ -15,8 +15,8 @@ import java.io.IOException;
 @SuppressWarnings({"NotNullNullableValidation", "FieldCanBeLocal"})
 public final class DefaultServer {
 
-    private final Server server = new Server();
     private static final int port = 3466;
+    private final Server server = new Server();
 
     public Server build() {
         return build(port);
@@ -29,9 +29,7 @@ public final class DefaultServer {
         server.setConnectors(new Connector[]{serverConnector});
         try {
             setUp();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return server;

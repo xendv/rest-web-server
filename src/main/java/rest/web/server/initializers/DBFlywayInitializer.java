@@ -1,6 +1,5 @@
 package rest.web.server.initializers;
 
-import com.google.inject.Inject;
 import org.flywaydb.core.Flyway;
 import org.gradle.internal.impldep.com.esotericsoftware.minlog.Log;
 import org.jetbrains.annotations.NotNull;
@@ -9,7 +8,6 @@ public final class DBFlywayInitializer {
     public static final @NotNull
     JDBCSettingsProvider JDBC_SETTINGS = JDBCSettingsProvider.DEFAULT;
 
-    @Inject
     public static void initDBFlyway() {
         final Flyway flyway = Flyway
                 .configure()
